@@ -3,6 +3,14 @@ const resolvers = {
         helloWorld: () => {
             return 'Hello World!';
         }
+    },
+    Mutation: {
+        addUser: async () => {
+
+        },
+        login: async () => {
+            
+        }
     }
 };
 
