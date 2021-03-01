@@ -7,9 +7,18 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
+import Auth from './utils/auth';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql'
+  uri: 'http://localhost:3001/graphql',
+  request: (operation) => {
+    const token = Auth.getToken()
+    operation.setContext({
+      headers: { 
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    })
+  }
 });
 
 function App() {
